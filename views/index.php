@@ -1,5 +1,3 @@
-<marquee><h1>supervisor</h1></marquee>
-
 <script>
 window.__supervisorcom = {}
 window.__supervisorcom.request = (method, body) => {
@@ -63,11 +61,12 @@ window.addEventListener("message", (event) => {
     $supervisorcom_url = add_query_arg(
       array(
         'secret' => $supervisorcom_secret,
-        'url' => get_site_url(),
+        'url' => urlencode(get_site_url()),
+        'channel_name' => 'wp-plugin',
+        'channel_version' => '0.0.1'
       ),
       "https://my.supervisor.com/new",
     );
   }
 ?>
-<h1><?php echo $supervisorcom_url ?></h1>
-<iframe width="1000" height="1000" src="<?php echo $supervisorcom_url ?>"></iframe>
+<iframe width="100%" height="1000" src="<?php echo $supervisorcom_url ?>"></iframe>
