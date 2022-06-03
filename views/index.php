@@ -69,4 +69,4 @@ window.addEventListener("message", (event) => {
     );
   }
 ?>
-<iframe width="100%" height="1000" src="<?php echo $supervisorcom_url ?>"></iframe>
+<iframe width="100%" style='height: 95vh;' src="<?php echo $supervisorcom_url ?>"></iframe>
