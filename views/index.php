@@ -74,6 +74,10 @@ window.__supervisorcom.delete = (key) => {
   );
 }
 
+window.__supervisorcom.frameReloadInterval = setInterval(() => {
+  document.getElementById('supervisor').src += '';
+}, 15000)
+
 window.addEventListener("message", (event) => {
   const msg = JSON.parse(event.data);
   switch(msg.type) {
@@ -82,6 +86,9 @@ window.addEventListener("message", (event) => {
       break;
     case 'com.supervisor.v1.delete':
       __supervisorcom.requestWithTimeoutAndRetry(5000, "DELETE", msg)
+      break;
+    case 'com.supervisor.v1.load':
+      clearInterval(__supervisorcom.frameReloadInterval)
       break;
     default:
       return;
