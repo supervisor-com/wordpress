@@ -94,6 +94,10 @@ window.addEventListener("message", (event) => {
       return;
   }
 })
+
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById('wpcontent').style = "padding: 0 !important;"
+})
 </script>
 
 <?php
@@ -116,4 +120,4 @@ window.addEventListener("message", (event) => {
     );
   }
 ?>
-<iframe width="100%" style='height: 95vh;' src="<?php echo $supervisorcom_url ?>"></iframe>
+<iframe id='supervisor' width="100%" style='height: 100vh; position: absolute; left: 0; top: 0; right: 0; z-index: 10;' src="<?php echo $supervisorcom_url ?>"></iframe>
