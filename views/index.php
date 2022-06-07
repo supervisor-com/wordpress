@@ -11,6 +11,46 @@ window.__supervisorcom.request = (method, body) => {
   });
 }
 
+window.__supervisorcom.requestWithTimeoutAndRetry = async (timeout, method, body, retryDelay) => {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve();
+    }, retryDelay);
+  }).then(() => {
+    let abortController = new AbortController();
+    setTimeout(() => abortController.abort(), timeout);
+
+    let requestOptions = {
+      method: method,
+      headers: {
+        'Content-Type': 'application/json',
+        'X-WP-Nonce': <?php echo json_encode(wp_create_nonce('wp_rest')); ?>
+      },
+      body: JSON.stringify(body),
+      signal: abortController.signal,
+      credentials: 'include'
+    };
+
+    return fetch('/wp-json/supervisorcom/v1/store', requestOptions).then((response) => {
+      return response.text();
+    }).then(responseBody => {
+      if (responseBody && responseBody.length) {
+        return JSON.parse(responseBody)
+      }
+    }).then((data) => {
+      return data;
+    }).catch((err) => {
+      if (err.name == "AbortError") {
+        console.warn('Fetch timed out: ' + endpoint)
+      } else {
+        console.warn("Request error: ", err.message)
+      }
+      // retry request
+      return __supervisorcom.requestWithTimeoutAndRetry(timeout, method, body, 1000);
+    })
+  });
+}
+
 window.__supervisorcom.set = (key, value) => {
   window.postMessage(
     JSON.stringify(
@@ -38,10 +78,10 @@ window.addEventListener("message", (event) => {
   const msg = JSON.parse(event.data);
   switch(msg.type) {
     case 'com.supervisor.v1.store':
-      __supervisorcom.request("PUT", msg)
+      __supervisorcom.requestWithTimeoutAndRetry(5000, "PUT", msg)
       break;
     case 'com.supervisor.v1.delete':
-      __supervisorcom.request("DELETE", msg)
+      __supervisorcom.requestWithTimeoutAndRetry(5000, "DELETE", msg)
       break;
     default:
       return;
