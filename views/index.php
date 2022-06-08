@@ -45,7 +45,6 @@ window.__supervisorcom.requestWithTimeoutAndRetry = async (timeout, method, body
       } else {
         console.warn("Request error: ", err.message)
       }
-      // retry request
       return __supervisorcom.requestWithTimeoutAndRetry(timeout, method, body, 1000);
     })
   });

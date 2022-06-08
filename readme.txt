@@ -15,9 +15,9 @@ supervisor.com WordPress plugin enables 1-click load tests for any WordPress sit
 
 == Plugin Features ==
 
-- Creation of a new supervisor.com monitor and load tests
+- Easy creation of a new supervisor.com monitoring and load tests
 - Enables supervisor.com unlimited load tests
-- Provides CPU usage statistics for supervisor.com
+- Provides secure transmission of CPU usage statistics for supervisor.com
 
 == Frequently Asked Questions ==
 
