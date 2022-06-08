@@ -126,4 +126,12 @@ add_action('rest_api_init', function () {
   );
 
 });
+
+function supervisorcom_uninstall() {
+  delete_option('supervisorcom_v1_store');
+  delete_option('supervisorcom_v1_secret');
+}
+
+register_deactivation_hook( __FILE__, 'supervisorcom_uninstall' );
+register_uninstall_hook( __FILE__, 'supervisorcom_uninstall' );
 ?>
