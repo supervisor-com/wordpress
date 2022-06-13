@@ -1,4 +1,5 @@
 <?php
+if ( ! defined( 'ABSPATH' ) ) exit;
 /**
  * Plugin Name:       supervisor.com
  * Plugin URI:        http://wordpress.org/plugins/supervisor-com/

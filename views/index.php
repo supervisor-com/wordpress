@@ -1,3 +1,7 @@
+<?php
+if ( ! defined( 'ABSPATH' ) ) exit;
+?>
+
 <script>
 window.__supervisorcom = {}
 window.__supervisorcom.request = (method, body) => {
@@ -112,11 +116,11 @@ document.addEventListener("DOMContentLoaded", () => {
       array(
         'secret' => $supervisorcom_secret,
         'url' => urlencode(get_site_url()),
-        'channel_name' => 'wp-plugin',
+        'channel_name' => 'wordpress-plugin',
         'channel_version' => '0.0.1'
       ),
       "https://my.supervisor.com/new",
     );
   }
 ?>
-<iframe id='supervisor' width="100%" style='height: 100vh; position: absolute; left: 0; top: 0; right: 0; z-index: 10;' src="<?php echo $supervisorcom_url ?>"></iframe>
+<iframe id='supervisor' width="100%" style='height: 640vh; position: absolute; left: 0; top: 0; right: 0; z-index: 10;' src="<?php echo(esc_attr($supervisorcom_url)); ?>"></iframe>

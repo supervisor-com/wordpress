@@ -4,6 +4,7 @@ Tags: load test, load testing, performance, testing, monitoring, uptime
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Stable tag: 0.0.1
+Tested up to: 6.0
 
 supervisor.com load testing and monitoring plugin for WordPress.
 
