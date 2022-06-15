@@ -10,5 +10,5 @@ release:
 	mkdir -p supervisor-com/trunk/views
 	cp views/index.php supervisor-com/trunk/views
 	cd supervisor-com; svn ci -m "$(version)" --username supervisorcom
-	cd supervisor-com; svn cp trunk "supervisor-com/tags/$(version)"
+	cd supervisor-com; svn cp trunk "tags/$(version)"
 	cd supervisor-com; svn ci -m "tag $(version)" --username supervisorcom
