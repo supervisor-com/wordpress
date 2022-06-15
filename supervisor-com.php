@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Plugin Name:       supervisor.com
  * Plugin URI:        http://wordpress.org/plugins/supervisor-com/
  * Description:       supervisor.com load testing and monitoring plugin for WordPress.
- * Version:           0.0.1
+ * Version:           0.0.2
  * Author:            supervisorcom
  * Author URI:        https://www.supervisor.com
  * License:           GPL v2 or later
@@ -50,13 +50,13 @@ function supervisorcom_cpus() {
 
     $cpus_hz_parts = explode(' ', $line);
     $cpus_activities = array(
-      'user' => $cpus_hz_parts[2],
-      'nice' => $cpus_hz_parts[3],
-      'sys' => $cpus_hz_parts[4],
-      'idle' => $cpus_hz_parts[5],
-      'iowait' => $cpus_hz_parts[6],
-      'irq' => $cpus_hz_parts[7],
-      'softirq' => $cpus_hz_parts[8]
+      'user' => intval($cpus_hz_parts[2]),
+      'nice' => intval($cpus_hz_parts[3]),
+      'sys' => intval($cpus_hz_parts[4]),
+      'idle' => intval($cpus_hz_parts[5]),
+      'iowait' => intval($cpus_hz_parts[6]),
+      'irq' => intval($cpus_hz_parts[7]),
+      'softirq' => intval($cpus_hz_parts[8])
     );
 
     return $cpus_activities;
@@ -116,7 +116,7 @@ add_action('rest_api_init', function () {
     )
   );
 
-  register_rest_route( 'supervisorcom/v1', '/cpus',
+  register_rest_route( 'supervisorcom/v2', '/cpus',
     array(
       'methods' => 'GET',
       'callback' => function(WP_REST_Request $request) {
