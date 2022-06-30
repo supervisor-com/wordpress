@@ -111,13 +111,22 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     $supervisorcom_secret = wp_generate_uuid4();
     update_option('supervisorcom_v1_secret', $supervisorcom_secret);
+    $channel_user = wp_get_current_user()->user_email;
+    $channel_stats_url = add_query_arg(
+      array(
+        'secret' => $supervisorcom_secret,
+      ),
+      get_site_url()."/wp-json/supervisorcom/v2/cpus"
+    );
 
     $supervisorcom_url = add_query_arg(
       array(
         'secret' => $supervisorcom_secret,
         'url' => urlencode(get_site_url()),
         'channel_name' => 'wordpress-plugin',
-        'channel_version' => '0.0.1'
+        'channel_version' => '0.0.2',
+        'channel_user' => $channel_user,
+        'channel_stats_url' => $channel_stats_url
       ),
       "https://my.supervisor.com/new",
     );
