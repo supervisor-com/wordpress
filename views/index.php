@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
         'secret' => $supervisorcom_secret,
         'url' => urlencode(get_site_url()),
         'channel_name' => 'wordpress-plugin',
-        'channel_version' => '0.0.2',
+        'channel_version' => '0.0.3',
         'channel_user' => $channel_user,
         'channel_stats_url' => $channel_stats_url
       ),
