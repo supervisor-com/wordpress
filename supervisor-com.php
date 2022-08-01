@@ -41,9 +41,9 @@ function supervisorcom_cpus() {
     return array();
   }
 
-	$data = file('/proc/stat');
+  $data = file('/proc/stat');
 
-	foreach( $data as $line ) {
+  foreach( $data as $line ) {
     if (!preg_match('/^cpu\s/', $line)) {
       continue;
     }
@@ -60,7 +60,7 @@ function supervisorcom_cpus() {
     );
 
     return $cpus_activities;
-	}
+  }
 }
 
 add_action('rest_api_init', function () {
