@@ -4,7 +4,7 @@ if ( ! defined( 'ABSPATH' ) ) exit;
  * Plugin Name:       supervisor.com
  * Plugin URI:        http://wordpress.org/plugins/supervisor-com/
  * Description:       supervisor.com load testing and monitoring plugin for WordPress.
- * Version:           0.0.4
+ * Version:           0.0.5
  * Author:            supervisorcom
  * Author URI:        https://www.supervisor.com
  * License:           GPL v2 or later
