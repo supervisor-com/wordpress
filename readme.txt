@@ -1,6 +1,6 @@
 === supervisor.com ===
 Contributors: supervisorcom
-Tags: load test, load testing, performance, testing, monitoring, uptime, monitor, load, testing
+Tags: load test, load testing, performance, testing, monitoring, uptime, monitor, load, testing, page speed, optimization
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Stable tag: __SUPERVISOR_WORDPRESS_VERSION__
@@ -30,13 +30,17 @@ No upgrade notices, yet.
 
 == Changelog ==
 
+= 0.0.7 =
+
+Version update: keywords
+
 = 0.0.6 =
 
-Version update
+Version update: keywords
 
 = 0.0.5 =
 
-Version update
+Version update: keywords
 
 = 0.0.4 =
 
