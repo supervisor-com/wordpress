@@ -7,6 +7,7 @@ clean:
 # make release version=0.0.0
 # TODO: sed might be macos specific
 release:
+	git push
 	cp readme.txt supervisor-com/trunk
 	cp supervisor-com.php supervisor-com/trunk
 	mkdir -p supervisor-com/trunk/views
