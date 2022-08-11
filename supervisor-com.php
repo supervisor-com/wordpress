@@ -50,13 +50,13 @@ function supervisorcom_cpus() {
 
     $cpus_hz_parts = explode(' ', $line);
     $cpus_activities = array(
-      'user' => intval($cpus_hz_parts[2]),
-      'nice' => intval($cpus_hz_parts[3]),
-      'sys' => intval($cpus_hz_parts[4]),
-      'idle' => intval($cpus_hz_parts[5]),
-      'iowait' => intval($cpus_hz_parts[6]),
-      'irq' => intval($cpus_hz_parts[7]),
-      'softirq' => intval($cpus_hz_parts[8])
+      'user' => intval($cpus_hz_parts[1]),
+      'nice' => intval($cpus_hz_parts[2]),
+      'sys' => intval($cpus_hz_parts[3]),
+      'idle' => intval($cpus_hz_parts[4]),
+      'iowait' => intval($cpus_hz_parts[5]),
+      'irq' => intval($cpus_hz_parts[6]),
+      'softirq' => intval($cpus_hz_parts[7])
     );
 
     return $cpus_activities;
