@@ -116,7 +116,7 @@ document.addEventListener("DOMContentLoaded", () => {
       array(
         'secret' => $supervisorcom_secret,
       ),
-      get_site_url()."/wp-json/supervisorcom/v2/cpus"
+      get_site_url()."/wp-json/supervisorcom/v3/cpus"
     );
 
     $supervisorcom_url = add_query_arg(
