@@ -43,24 +43,9 @@ function supervisorcom_cpus() {
 
   $data = file('/proc/stat');
 
-  foreach( $data as $line ) {
-    if (!preg_match('/^cpu\s/', $line)) {
-      continue;
-    }
-
-    $cpus_hz_parts = explode(' ', $line);
-    $cpus_activities = array(
-      'user' => intval($cpus_hz_parts[2]),
-      'nice' => intval($cpus_hz_parts[3]),
-      'sys' => intval($cpus_hz_parts[4]),
-      'idle' => intval($cpus_hz_parts[5]),
-      'iowait' => intval($cpus_hz_parts[6]),
-      'irq' => intval($cpus_hz_parts[7]),
-      'softirq' => intval($cpus_hz_parts[8])
-    );
-
-    return $cpus_activities;
-  }
+  return array(
+    'proc_stat' => $data
+  )
 }
 
 add_action('rest_api_init', function () {
@@ -116,7 +101,7 @@ add_action('rest_api_init', function () {
     )
   );
 
-  register_rest_route( 'supervisorcom/v2', '/cpus',
+  register_rest_route( 'supervisorcom/v3', '/cpus',
     array(
       'methods' => 'GET',
       'callback' => function(WP_REST_Request $request) {
