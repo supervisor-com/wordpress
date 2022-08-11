@@ -45,7 +45,7 @@ function supervisorcom_cpus() {
 
   return array(
     'proc_stat' => $data
-  )
+  );
 }
 
 add_action('rest_api_init', function () {
