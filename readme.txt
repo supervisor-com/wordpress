@@ -30,6 +30,10 @@ No upgrade notices, yet.
 
 == Changelog ==
 
+= 0.0.9 =
+
+Version update: refactor iframe url building
+
 = 0.0.8 =
 
 Version update: Skip CPU activities parsing
