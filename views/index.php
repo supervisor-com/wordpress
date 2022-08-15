@@ -105,31 +105,38 @@ document.addEventListener("DOMContentLoaded", () => {
 
 <?php
   $supervisorcom_store = get_option('supervisorcom_v1_store');
+  $supervisorcom_secret = get_option('supervisorcom_v1_secret');
+
+  $channel_user = wp_get_current_user()->user_email;
+
+  $supervisorcom_base_url = '';
+
+  $supervisorcom_url_query_args = array(
+    'channel_name' => 'wordpress-plugin',
+    'channel_version' => '__SUPERVISOR_WORDPRESS_VERSION__',
+    'channel_user' => $channel_user,
+  );
 
   if (isset($supervisorcom_store['url'])) {
-    $supervisorcom_url = $supervisorcom_store['url'];
+    $supervisorcom_base_url = $supervisorcom_store['url'];
   } else {
     $supervisorcom_secret = wp_generate_uuid4();
     update_option('supervisorcom_v1_secret', $supervisorcom_secret);
-    $channel_user = wp_get_current_user()->user_email;
-    $channel_stats_url = add_query_arg(
-      array(
-        'secret' => $supervisorcom_secret,
-      ),
-      get_site_url()."/wp-json/supervisorcom/v3/cpus"
-    );
 
-    $supervisorcom_url = add_query_arg(
-      array(
-        'secret' => $supervisorcom_secret,
-        'url' => urlencode(get_site_url()),
-        'channel_name' => 'wordpress-plugin',
-        'channel_version' => '__SUPERVISOR_WORDPRESS_VERSION__',
-        'channel_user' => $channel_user,
-        'channel_stats_url' => $channel_stats_url
-      ),
-      "https://my.supervisor.com/new",
-    );
+    /* $supervisorcom_base_url = "https://my.supervisor.com/new", */
+    $supervisorcom_base_url = "https://my.superbot.club/new";
+    $supervisorcom_url_query_args['secret'] = $supervisorcom_secret;
+    $supervisorcom_url_query_args['url'] = urlencode(get_site_url());
   }
+
+  $channel_stats_url = add_query_arg(
+    array(
+      'secret' => $supervisorcom_secret,
+    ),
+    get_site_url()."/wp-json/supervisorcom/v3/cpus"
+  );
+  $supervisorcom_url_query_args['channel_stats_url'] = esc_url($channel_stats_url);
+
+  $supervisorcom_url = add_query_arg($supervisorcom_url_query_args, $supervisorcom_base_url);
 ?>
 <iframe id='supervisor' width="100%" style='height: 640vh; position: absolute; left: 0; top: 0; right: 0; z-index: 10;' src="<?php echo(esc_attr($supervisorcom_url)); ?>"></iframe>
