@@ -13,6 +13,7 @@ release:
 	mkdir -p supervisor-com/trunk/views
 	cp views/index.php supervisor-com/trunk/views
 	cd supervisor-com/trunk; find . -type f -exec sed -i '' -e 's/__SUPERVISOR_WORDPRESS_VERSION__/$(version)/g' {} \;
+	cd supervisor-com/trunk; find . -type f -exec sed -i '' -e 's/https:\/\/my.superbot.club\/new/https:\/\/my.supervisor.com\/new/g' {} \;
 	cd supervisor-com; svn ci -m "$(version)" --username supervisorcom
 	cd supervisor-com; svn cp trunk "tags/$(version)"
 	cd supervisor-com; svn ci -m "tag $(version)" --username supervisorcom

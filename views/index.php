@@ -4,16 +4,6 @@ if ( ! defined( 'ABSPATH' ) ) exit;
 
 <script>
 window.__supervisorcom = {}
-window.__supervisorcom.request = (method, body) => {
-  fetch('/wp-json/supervisorcom/v1/store', {
-    method: method,
-    headers: {
-      'Content-Type': 'application/json',
-      'X-WP-Nonce': <?php echo json_encode(wp_create_nonce('wp_rest')); ?>
-    },
-    body: JSON.stringify(body),
-  });
-}
 
 window.__supervisorcom.requestWithTimeoutAndRetry = async (timeout, method, body, retryDelay) => {
   return new Promise(resolve => {
@@ -123,7 +113,6 @@ document.addEventListener("DOMContentLoaded", () => {
     $supervisorcom_secret = wp_generate_uuid4();
     update_option('supervisorcom_v1_secret', $supervisorcom_secret);
 
-    /* $supervisorcom_base_url = "https://my.supervisor.com/new", */
     $supervisorcom_base_url = "https://my.superbot.club/new";
     $supervisorcom_url_query_args['secret'] = $supervisorcom_secret;
     $supervisorcom_url_query_args['url'] = urlencode(get_site_url());
